@@ -4,7 +4,6 @@
 
 param location string = resourceGroup().location
 param accountName string
-param appInsightsName string
 
 @allowed([
   'Standard_LRS'
@@ -25,14 +24,6 @@ param errorDocument404Path string = 'index.html'
 var storageAccountContributorRole = '17d1049b-9a84-46fb-8f53-869881c3d3ab'
 var storageAccountContributorRoleDefinitionId = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', storageAccountContributorRole)
 
-resource appinsights 'Microsoft.Insights/components@2018-05-01-preview' = {
-  name: appInsightsName
-  location: location
-  kind: 'web'
-  properties: {
-    Application_Type: 'web'
-  }
-}
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-08-01' = {
   name: accountName
